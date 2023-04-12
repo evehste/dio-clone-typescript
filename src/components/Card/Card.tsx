@@ -1,6 +1,4 @@
-import { FiThumbsUp } from 'react-icons/fi'
-import React from 'react'
-
+import { FiThumbsUp } from 'react-icons/fi';
 import { 
   CardContainer,
   ImageBackground,
@@ -9,7 +7,8 @@ import {
   UserPicture,
   PostInfo,
   HasInfo,
-} from './styles'
+} from './styles';
+
 const Card = () => {
   return (
     <CardContainer>
