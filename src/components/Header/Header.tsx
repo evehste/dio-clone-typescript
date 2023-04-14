@@ -1,16 +1,20 @@
 import logo from '../../assets/logo-dio.png';
 import { Button } from '../Button/Button';
-import IHeader from './IHeader';
-
 import { Container, Wrapper, BuscarInputContainer, Input, Row, Menu, MenuRight, UserPicture} from './styles';
+import { Link } from 'react-router-dom';
+import { useAuth } from '../../hooks/useAuth';
 
-const Header = ({autenticado} :IHeader) => {
+const Header = () => {
+  const { user, handleSignOut} = useAuth();
+
   return (
     <Wrapper>
       <Container>
           <Row>
-            <img src={logo} alt="Logo da dio"/>
-              { autenticado &&
+            <Link to="/">
+              <img src={logo} alt="Logo da dio"/>
+            </Link>
+              { user.id &&
                 <>
                   <BuscarInputContainer>
                   <Input placeholder='Buscar...'/>
@@ -20,8 +24,11 @@ const Header = ({autenticado} :IHeader) => {
                 </>}
           </Row>
           <Row>
-            { autenticado ?(
-              <UserPicture src="https://avatars.githubusercontent.com/u/45184516?v=4"/>
+            { user.id ?(
+              <>
+                <UserPicture src="https://avatars.githubusercontent.com/u/45184516?v=4"/>
+                <Link to="/" onClick={handleSignOut}>Sair</Link>
+              </>
             ) :
               <>
                 <MenuRight href="/">Home</MenuRight>
